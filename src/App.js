@@ -1,8 +1,13 @@
+import React from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
+
 function App() {
+
   return (
-    <div>
-      App
-    </div>
+    <Switch>
+      <Route exact path="/auth"><div>App</div></Route>
+      <Redirect from="/" to="/auth" />
+    </Switch>
   );
 }
 
