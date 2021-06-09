@@ -19,3 +19,40 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+@layer components {
+
+  .Input {
+    @apply
+      appearance-none
+      rounded-none
+      relative
+      block
+      w-full
+      px-3
+      py-2
+      border
+      border-gray-700
+      placeholder-gray-500
+      bg-gray-800
+      text-gray-200
+      focus:outline-none
+      focus:ring-indigo-500
+      focus:border-indigo-500
+      focus:z-10
+    ;
+  }
+
+  .Input_autofill {
+    @apply font-sans text-lg;
+  }
+  .Input_autofill:-webkit-autofill::first-line,
+  .Input_autofill:-webkit-autofill,
+  .Input_autofill:-webkit-autofill:hover,
+  .Input_autofill:-webkit-autofill:focus,
+  .Input_autofill:-webkit-autofill:active {
+    @apply font-sans text-lg;
+    -webkit-box-shadow: 0 0 0 30px #27272a inset !important;
+    -webkit-text-fill-color: #F87764 !important;
+  }
+}
