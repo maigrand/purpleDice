@@ -1,16 +1,6 @@
 import React from 'react'
 
-function login(email, password) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (email === 'oxiggy@oxiggy.com' && password === '123') {
-        resolve({ token:123 })
-      } else {
-        reject(Error('Can`t login'))
-      }
-    }, 2000)
-  })
-}
+import { signin } from '../../resources/user'
 
 function Auth() {
 
@@ -23,7 +13,7 @@ function Auth() {
     setSubmitPending(true)
     const formData = new FormData(event.target)
     try {
-      const { token } = await login(formData.get('email'), formData.get('password'))
+      const { token } = await signin(formData.get('email'), formData.get('password'))
       sessionStorage.setItem('TOKEN', token)
       if (true) { // REMEMBER
         localStorage.setItem('TOKEN', token)

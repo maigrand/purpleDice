@@ -1,17 +1,9 @@
 import React from 'react'
+
+import { fetchUser } from './resources/user'
+
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Auth from './views/Auth/Auth'
-
-function getUser() {
-  const token = sessionStorage.getItem('TOKEN')
-  return new Promise((resolve, reject) => {
-    if (token) {
-      resolve({ id:1, email:'oxiggy@oxiggy.com' })
-    } else {
-      reject(Error('401'))
-    }
-  })
-}
 
 const TOKEN = localStorage.getItem('TOKEN')
 if (TOKEN) {
@@ -26,7 +18,7 @@ function App() {
   const checkUser = async () => {
     setUserPending(true)
     try {
-      const user = await getUser()
+      const user = await fetchUser()
       setUser(user)
     } catch (error) {
       setUser(null)
@@ -35,8 +27,9 @@ function App() {
     }
   }
 
-  const logout = () => {
+  const signout = () => {
     sessionStorage.removeItem('TOKEN')
+    localStorage.removeItem('TOKEN')
     location.reload()
   }
 
